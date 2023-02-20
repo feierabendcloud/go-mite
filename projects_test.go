@@ -1,10 +1,8 @@
-package mite_test
+package mite
 
 import (
 	"os"
 	"testing"
-
-	mite "github.com/gosticks/go-mite"
 )
 
 func TestGetProjects(t *testing.T) {
@@ -16,7 +14,7 @@ func TestGetProjects(t *testing.T) {
 		t.FailNow()
 	}
 
-	mite := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	mite := NewMiteAPI(username, team, key, "test@go-mite")
 
 	_, err := mite.GetProjects(nil)
 	if err != nil {
@@ -33,7 +31,7 @@ func TestGetProject(t *testing.T) {
 		t.FailNow()
 	}
 
-	mite := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	mite := NewMiteAPI(username, team, key, "test@go-mite")
 
 	ps, err := mite.GetProjects(nil)
 	if err != nil {
@@ -60,9 +58,9 @@ func TestCreateDeleteProject(t *testing.T) {
 		t.FailNow()
 	}
 
-	m := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	m := NewMiteAPI(username, team, key, "test@go-mite")
 
-	cp := &mite.Project{
+	cp := &Project{
 		Name: "GoTestProject",
 	}
 

@@ -1,10 +1,8 @@
-package mite_test
+package mite
 
 import (
 	"os"
 	"testing"
-
-	"github.com/gosticks/go-mite"
 )
 
 func TestGetUsers(t *testing.T) {
@@ -16,7 +14,7 @@ func TestGetUsers(t *testing.T) {
 		t.FailNow()
 	}
 
-	mite := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	mite := NewMiteAPI(username, team, key, "test@go-mite")
 
 	_, errUser := mite.GetUsers(false)
 	if errUser != nil {
@@ -37,7 +35,7 @@ func TestGetUser(t *testing.T) {
 		t.FailNow()
 	}
 
-	mite := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	mite := NewMiteAPI(username, team, key, "test@go-mite")
 
 	users, errUser := mite.GetUsers(false)
 	if errUser != nil {

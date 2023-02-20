@@ -1,4 +1,4 @@
-package mite_test
+package mite
 
 import (
 	"fmt"
@@ -7,8 +7,6 @@ import (
 	"time"
 
 	"github.com/jinzhu/now"
-
-	mite "github.com/gosticks/go-mite"
 )
 
 func TestGetTimeEntriesGroup(t *testing.T) {
@@ -20,7 +18,7 @@ func TestGetTimeEntriesGroup(t *testing.T) {
 		t.FailNow()
 	}
 
-	m := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	m := NewMiteAPI(username, team, key, "test@go-mite")
 
 	// should fail
 	_, errEntries := m.GetTimeEntriesGroup(now.BeginningOfMonth(), now.EndOfMonth(), nil)
@@ -46,10 +44,10 @@ func TestCreateDeleteTimeEntry(t *testing.T) {
 		t.FailNow()
 	}
 
-	m := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	m := NewMiteAPI(username, team, key, "test@go-mite")
 
-	newEntry := &mite.TimeEntryCreator{
-		DateAt:  mite.Time{time.Now()},
+	newEntry := &TimeEntryCreator{
+		DateAt:  Time{time.Now()},
 		Minutes: 60,
 		Note:    "TEST NOTE CREATED BY GO-MITE API. PLEASE REMOVE",
 	}
@@ -76,10 +74,10 @@ func TestCreateUpdateDeleteTimeEntry(t *testing.T) {
 		t.FailNow()
 	}
 
-	m := mite.NewMiteAPI(username, team, key, "test@go-mite")
+	m := NewMiteAPI(username, team, key, "test@go-mite")
 
-	newEntry := &mite.TimeEntryCreator{
-		DateAt:  mite.Time{time.Now()},
+	newEntry := &TimeEntryCreator{
+		DateAt:  Time{time.Now()},
 		Minutes: 60,
 		Note:    "TEST NOTE CREATED BY GO-MITE API. PLEASE REMOVE",
 	}
@@ -91,7 +89,7 @@ func TestCreateUpdateDeleteTimeEntry(t *testing.T) {
 
 	t.Logf("Created entry: %d", entry.ID)
 
-	errUpdate := m.UpdateTimeEntry(entry.ID, &mite.TimeEntry{
+	errUpdate := m.UpdateTimeEntry(entry.ID, &TimeEntry{
 		Note:    "Updated note",
 		Minutes: 66,
 	})
